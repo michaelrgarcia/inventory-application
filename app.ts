@@ -1,6 +1,7 @@
 import express, { Request, Response, NextFunction } from "express";
 
 import indexRouter from "./routes/indexRouter.js";
+import genresRouter from "./routes/genresRouter.js";
 
 import { fileURLToPath } from "node:url";
 import { join, dirname } from "node:path";
@@ -14,6 +15,7 @@ const app = express();
 const PORT = 3000;
 
 app.use("/", indexRouter);
+app.use("/genres", genresRouter);
 
 app.use(express.static(assetsPath));
 
