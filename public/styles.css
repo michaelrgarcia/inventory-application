@@ -124,7 +124,8 @@ main {
 }
 
 .album,
-.artist {
+.artist,
+.genre {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -137,6 +138,7 @@ main {
   background-color: #18181c;
 }
 
+.album-cover-wrapper,
 .artist-pic-wrapper {
   width: 200px;
   height: 100%;
@@ -157,6 +159,12 @@ main {
   font-size: 1.1em;
 }
 
+.genre-name {
+  margin-top: 0px;
+
+  font-size: 1.2em;
+}
+
 .artists {
   list-style-type: none;
 
@@ -173,14 +181,25 @@ main {
   text-decoration: none;
 }
 
+.artists > a:hover {
+  color: #6bc78e;
+}
+
 .album-actions,
 .artist-actions {
   display: flex;
   justify-content: space-between;
 }
 
+.genre-actions {
+  display: flex;
+
+  gap: 20px;
+}
+
 .album-actions > a > button,
-.artist-actions > a > button {
+.artist-actions > a > button,
+.genre-actions > a > button {
   width: 90px;
 
   padding: 5px 0px;
@@ -193,13 +212,15 @@ main {
 }
 
 .album-actions > a > button:hover,
-.artist-actions > a > button:hover {
+.artist-actions > a > button:hover,
+.genre-actions > a > button:hover {
   background-color: rgba(59, 190, 109, 0.8);
 
   cursor: pointer;
 }
 
 .album-actions > a > button:active,
-.artist-actions > a > button:active {
+.artist-actions > a > button:active,
+.genre-actions > a > button:active {
   background-color: rgba(59, 190, 109, 0.6);
 }
