@@ -8,14 +8,7 @@
   </head>
   <body>
     <div id="root">
-      <header>
-        <h1>Subspace Music</h1>
-        <a href="/">
-          <button type="button" class="add-artist">
-            <img src="plus.svg" alt="Add artist" />
-          </button>
-        </a>
-      </header>
+      <%- include('partials/header', {category: "artist"}) %>
       <main>
         <div class="artist">
           <div class="artist-info">

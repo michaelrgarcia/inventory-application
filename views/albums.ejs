@@ -8,15 +8,7 @@
   </head>
   <body>
     <div id="root">
-      <header>
-        <h1>Subspace Music</h1>
-        <a href="/">
-          <button type="button" class="add-album">
-            <!-- change to "add album" on desktop?-->
-            <img src="plus.svg" alt="Add album" />
-          </button>
-        </a>
-      </header>
+      <%- include('partials/header', {category: "album"}) %>
       <!-- index page is supposed to have genre select (at least on mobile). this is temporary-->
       <main>
         <!-- make into component-->

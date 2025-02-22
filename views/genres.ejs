@@ -8,15 +8,7 @@
   </head>
   <body>
     <div id="root">
-      <header>
-        <h1>Subspace Music</h1>
-        <a href="/">
-          <button type="button" class="add-genre">
-            <!-- change to "add album" on desktop?-->
-            <img src="plus.svg" alt="Add genre" />
-          </button>
-        </a>
-      </header>
+      <%- include('partials/header', {category: "genre"}) %>
       <main>
         <div class="genre">Rock</div>
       </main>
