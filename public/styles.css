@@ -59,6 +59,40 @@ main {
   place-items: center;
 }
 
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+
+  width: 100%;
+}
+
+.categories > a {
+  margin: 0 20px;
+}
+
+.categories > a > button {
+  width: 100%;
+
+  background-color: #24c360;
+  border: 1px solid #ffffff25;
+  border-radius: 5px;
+
+  padding: 15px;
+
+  font-size: 1.4em;
+}
+
+.categories > a > button:hover {
+  background-color: rgba(59, 190, 109, 0.8);
+
+  cursor: pointer;
+}
+
+.categories > a > button:active {
+  background-color: rgba(59, 190, 109, 0.6);
+}
+
 .album {
   display: flex;
   flex-direction: column;
