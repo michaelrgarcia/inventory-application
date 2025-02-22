@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <title>Subspace Music</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <h1>Subspace Music</h1>
+        <a href="/">
+          <button type="button" class="add-artist">
+            <img src="plus.svg" alt="Add artist" />
+          </button>
+        </a>
+      </header>
+      <main>
+        <div class="artist">
+          <div class="artist-info">
+            <!-- img src will come from a url in the db-->
+            <div class="artist-pic-wrapper">
+              <img
+                src="elliott-smith-umbrella.jpg"
+                alt="Elliott Smith Photo"
+                class="artist-pic"
+              />
+            </div>
+            <p class="artist-name">Elliott Smith</p>
+            <div class="artist-actions">
+              <a href="/">
+                <button type="button">View</button>
+              </a>
+              <a href="/">
+                <button type="button">Modify</button>
+              </a>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
