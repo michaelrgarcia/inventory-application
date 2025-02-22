@@ -45,6 +45,20 @@ h1 {
   height: 35px;
 }
 
+.go-back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid #ffffff00;
+  border-radius: 8px;
+
+  background-color: #b8a1a1c4;
+
+  width: 35px;
+  height: 35px;
+}
+
 .add-album:hover,
 .add-genre:hover,
 .add-artist:hover {
@@ -53,10 +67,20 @@ h1 {
   cursor: pointer;
 }
 
+.go-back:hover {
+  background-color: rgba(184, 161, 161, 0.6);
+
+  cursor: pointer;
+}
+
 .add-album:active,
 .add-genre:active,
 .add-artist:active {
   background-color: rgba(59, 190, 109, 0.6);
+}
+
+.go-back:active {
+  background-color: rgba(184, 161, 161, 0.4);
 }
 
 main {
