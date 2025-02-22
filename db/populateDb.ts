@@ -33,6 +33,11 @@ CREATE TABLE album_genres (
     album_id INTEGER REFERENCES albums(id), 
     genre_id INTEGER REFERENCES genres(id)
 );
+
+CREATE TABLE artist_genres (
+    artist_id INTEGER REFERENCES artists(id), 
+    genre_id INTEGER REFERENCES genres(id)
+);
 `; // add insertions later
 
 async function populateDb() {
