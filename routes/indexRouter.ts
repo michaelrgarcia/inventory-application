@@ -1,8 +1,8 @@
-import { Router, Request, Response } from "express";
-import { genresGet } from "../controllers/indexController.js";
+import { Router } from "express";
+import { indexGet } from "../controllers/indexController.js";
 
 const indexRouter = Router();
 
-indexRouter.get("/", genresGet);
+indexRouter.get("/", indexGet);
 
 export default indexRouter;
