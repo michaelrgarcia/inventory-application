@@ -96,7 +96,7 @@ export const editGenrePost = [
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
-      return res.status(400).render("addGenre", {
+      return res.status(400).render("editGenre", {
         errors: errors.array(),
       });
     }
