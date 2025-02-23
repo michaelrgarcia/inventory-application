@@ -47,9 +47,10 @@
               required
             />
             <datalist id="artists">
-              <!-- populate with artists from db -->
-              <option value="Elliott Smith"></option>
-              <option value="Red House Painters"></option>
+              <% if (locals.artists) { %> <% artists.forEach(function(artist) {
+              %>
+              <option value="<%= artist.name %>"></option>
+              <% }); %> <% } %>
             </datalist>
           </div>
           <div class="form-row">
@@ -61,9 +62,9 @@
               placeholder="Search genres"
             />
             <datalist id="genres">
-              <!-- populate with genres from db -->
-              <option value="Rock"></option>
-              <option value="Pop"></option>
+              <% if (locals.genres) { %> <% genres.forEach(function(genre) { %>
+              <option value="<%= genre.name %>"></option>
+              <% }); %> <% } %>
             </datalist>
           </div>
           <div class="form-row">

@@ -5,6 +5,8 @@ import {
   getAlbumById,
   getAlbumGenre,
   getAlbums,
+  getArtists,
+  getGenres,
 } from "../db/queries.js";
 
 export async function albumsGet(req: Request, res: Response) {
@@ -13,8 +15,11 @@ export async function albumsGet(req: Request, res: Response) {
   res.render("albums", { albums: albums });
 }
 
-export function addAlbumGet(req: Request, res: Response) {
-  res.render("addAlbum");
+export async function addAlbumGet(req: Request, res: Response) {
+  const artists = await getArtists();
+  const genres = await getGenres();
+
+  res.render("addAlbum", { artists: artists, genres: genres });
 }
 
 export const validateAlbum = [
@@ -22,7 +27,10 @@ export const validateAlbum = [
     .trim()
     .isLength({ max: 90 })
     .withMessage(`Album title cannot be longer than 90 characters.`),
-  body("releaseDate").toInt(),
+  body("releaseDate")
+    .isInt()
+    .withMessage(`Release date must be a number.`)
+    .toInt(),
   body("albumDescription")
     .optional({ checkFalsy: true })
     .trim()
