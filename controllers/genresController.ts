@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
-export function genresGet(req: Request, res: Response) {
-  res.render("genres");
+import { getGenres } from "../db/queries.js";
+
+export async function genresGet(req: Request, res: Response) {
+  const genres = await getGenres();
+
+  res.render("genres", { genres: genres });
 }
 
 export function addGenreGet(req: Request, res: Response) {
