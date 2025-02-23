@@ -301,3 +301,15 @@ h3 {
   color: #24c360;
   text-decoration: none;
 }
+
+.delete-album,
+.delete-artist,
+.delete-genre {
+  color: red;
+  text-decoration: none;
+
+  width: min-content;
+
+  margin-bottom: 10px;
+  margin-top: -10px;
+}

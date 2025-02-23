@@ -12,7 +12,7 @@
         <h1>Subspace Music</h1>
       </header>
       <main>
-        <form action="albums/edit/<%= genre.id %>" method="post">
+        <form action="/genres/edit/<%= genre.id %>" method="post">
           <%- include("partials/errors.ejs") %>
           <h2>Edit genre</h2>
           <div class="form-row">
@@ -39,6 +39,9 @@
 <%= genre.description %></textarea
             >
           </div>
+          <a href="/genres/delete/<%= genre.id %>" class="delete-genre"
+            >Delete</a
+          >
           <button type="submit">Submit</button>
         </form>
       </main>

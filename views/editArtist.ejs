@@ -12,7 +12,7 @@
         <h1>Subspace Music</h1>
       </header>
       <main>
-        <form action="artists/edit/<%= artist.id %>" method="post">
+        <form action="/artists/edit/<%= artist.id %>" method="post">
           <%- include("partials/errors.ejs") %>
           <h2>Edit artist</h2>
           <div class="form-row">
@@ -64,6 +64,9 @@
               value="<%= artist.image %>"
             />
           </div>
+          <a href="/artists/delete/<%= artist.id %>" class="delete-artist"
+            >Delete</a
+          >
           <button type="submit">Submit</button>
         </form>
       </main>
