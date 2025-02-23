@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
 import {
+  addGenre,
   getAlbumArtist,
   getAlbumsByGenre,
   getArtistsByGenre,
@@ -35,7 +36,7 @@ const validateGenre = [
 
 export const addGenrePost = [
   validateGenre,
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -46,9 +47,7 @@ export const addGenrePost = [
 
     const { genreName, genreDescription } = req.body;
 
-    console.log(genreName, genreDescription);
-
-    // insert genre query
+    await addGenre(genreName, genreDescription);
 
     res.status(200).redirect("/genres");
   },

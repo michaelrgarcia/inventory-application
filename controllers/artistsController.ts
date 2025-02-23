@@ -2,9 +2,11 @@ import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
 import {
+  addArtist,
   getArtistById,
   getArtists,
   getDiscography,
+  getGenres,
   getSameGenreArtists,
 } from "../db/queries.js";
 
@@ -14,8 +16,10 @@ export async function artistsGet(req: Request, res: Response) {
   res.render("artists", { artists: artists });
 }
 
-export function addArtistGet(req: Request, res: Response) {
-  res.render("addArtist");
+export async function addArtistGet(req: Request, res: Response) {
+  const genres = await getGenres();
+
+  res.render("addArtist", { genres: genres });
 }
 
 export const validateArtist = [
@@ -37,7 +41,7 @@ export const validateArtist = [
 
 export const addArtistPost = [
   validateArtist,
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -49,9 +53,16 @@ export const addArtistPost = [
     const { artistName, artistGenre, artistDescription, artistImage } =
       req.body;
 
-    console.log(artistName, artistGenre, artistDescription, artistImage);
-
-    // insert artist query. use a placeholder image if no artistImage is entered
+    if (artistImage !== "") {
+      await addArtist(artistName, artistDescription, artistImage, artistGenre);
+    } else {
+      await addArtist(
+        artistName,
+        artistDescription,
+        "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+        artistGenre
+      );
+    }
 
     res.status(200).redirect("/artists");
   },
