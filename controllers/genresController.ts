@@ -9,6 +9,7 @@ import {
   getArtistsByGenre,
   getGenreById,
   getGenres,
+  updateGenre,
 } from "../db/queries.js";
 
 export async function genresGet(req: Request, res: Response) {
@@ -101,8 +102,9 @@ export const editGenrePost = [
     }
 
     const { genreName, genreDescription } = req.body;
+    const { genreId } = req.params;
 
-    await addGenre(genreName, genreDescription);
+    await updateGenre(genreName, genreDescription, Number(genreId));
 
     res.status(200).redirect("/genres");
   },

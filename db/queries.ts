@@ -43,6 +43,17 @@ export async function deleteGenre(genreId: number) {
   await pool.query("DELETE FROM genres WHERE genres.id = $1", [genreId]);
 }
 
+export async function updateGenre(
+  name: string,
+  description: string,
+  genreId: number
+) {
+  await pool.query(
+    "UPDATE genres SET name = $1, description = $2 WHERE id = $3",
+    [name, description, genreId]
+  );
+}
+
 export async function addArtist(
   name: string,
   description: string,
