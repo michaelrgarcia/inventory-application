@@ -32,6 +32,28 @@
             />
           </div>
           <div class="form-row">
+            <label for="albumArtist">Artist </label>
+            <input
+              list="artists"
+              id="albumArtist"
+              placeholder="Search artists"
+            />
+            <datalist id="artists">
+              <!-- populate with artists from db -->
+              <option value="Elliott Smith"></option>
+              <option value="Red House Painters"></option>
+            </datalist>
+          </div>
+          <div class="form-row">
+            <label for="albumGenre">Genre </label>
+            <input list="genres" id="albumGenre" placeholder="Search genres" />
+            <datalist id="genres">
+              <!-- populate with genres from db -->
+              <option value="Rock"></option>
+              <option value="Pop"></option>
+            </datalist>
+          </div>
+          <div class="form-row">
             <label for="albumDescription">Description </label>
             <textarea
               name="albumDescription"

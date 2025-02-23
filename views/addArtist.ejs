@@ -32,6 +32,15 @@
             />
           </div>
           <div class="form-row">
+            <label for="artistGenre">Genre </label>
+            <input list="genres" id="artistGenre" placeholder="Search genres" />
+            <datalist id="genres">
+              <!-- populate with genres from db -->
+              <option value="Rock"></option>
+              <option value="Pop"></option>
+            </datalist>
+          </div>
+          <div class="form-row">
             <label for="artistDescription">Description </label>
             <textarea
               name="artistDescription"
