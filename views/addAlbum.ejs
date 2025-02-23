@@ -36,6 +36,7 @@
             <input
               list="artists"
               id="albumArtist"
+              name="albumArtist"
               placeholder="Search artists"
               required
             />
@@ -47,7 +48,12 @@
           </div>
           <div class="form-row">
             <label for="albumGenre">Genre </label>
-            <input list="genres" id="albumGenre" placeholder="Search genres" />
+            <input
+              list="genres"
+              id="albumGenre"
+              name="albumGenre"
+              placeholder="Search genres"
+            />
             <datalist id="genres">
               <!-- populate with genres from db -->
               <option value="Rock"></option>
