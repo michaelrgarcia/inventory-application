@@ -16,6 +16,8 @@ const assetsPath = join(__dirname, "public");
 const app = express();
 const PORT = 3000;
 
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/", indexRouter);
 app.use("/genres", genresRouter);
 app.use("/albums", albumsRouter);
