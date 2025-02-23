@@ -39,6 +39,19 @@ export async function getAlbumGenre(albumId: number) {
   return rows[0];
 }
 
+export async function deleteGenre(genreId: number) {
+  await pool.query(
+    "UPDATE artist_genres SET genre_id = 0 WHERE genre_id = $1",
+    [genreId]
+  );
+
+  await pool.query("UPDATE album_genres SET genre_id = 0 WHERE genre_id = $1", [
+    genreId,
+  ]);
+
+  await pool.query("DELETE FROM genres WHERE genres.id = $1", [genreId]);
+}
+
 export async function addArtist(
   name: string,
   description: string,
@@ -86,6 +99,20 @@ export async function getArtistById(artistId: number) {
   ]);
 
   return rows[0];
+}
+
+export async function deleteArtist(artistId: number) {
+  await pool.query(
+    "UPDATE album_artists SET artist_id = 0 WHERE artist_id = $1",
+    [artistId]
+  );
+
+  await pool.query(
+    "UPDATE artist_genres SET artist_id = 0 WHERE artist_id = $1",
+    [artistId]
+  );
+
+  await pool.query("DELETE FROM artists WHERE artists.id = $1", [artistId]);
 }
 
 export async function addAlbum(
@@ -151,4 +178,17 @@ export async function getAlbumArtist(albumId: number) {
   );
 
   return rows[0];
+}
+
+export async function deleteAlbum(albumId: number) {
+  await pool.query(
+    "UPDATE album_artists SET album_id = 0 WHERE album_id = $1",
+    [albumId]
+  );
+
+  await pool.query("UPDATE album_genres SET album_id = 0 WHERE album_id = $1", [
+    albumId,
+  ]);
+
+  await pool.query("DELETE FROM albums WHERE albums.id = $1", [albumId]);
 }

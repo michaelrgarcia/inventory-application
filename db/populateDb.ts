@@ -27,18 +27,18 @@ CREATE TABLE IF NOT EXISTS albums (
 );
 
 CREATE TABLE IF NOT EXISTS album_artists (
-    album_id INTEGER REFERENCES albums(id), 
-    artist_id INTEGER REFERENCES artists(id)
+    album_id INTEGER REFERENCES albums(id) ON DELETE CASCADE, 
+    artist_id INTEGER REFERENCES artists(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS album_genres (
-    album_id INTEGER REFERENCES albums(id), 
-    genre_id INTEGER REFERENCES genres(id)
+    album_id INTEGER REFERENCES albums(id) ON DELETE CASCADE, 
+    genre_id INTEGER REFERENCES genres(id) ON DELETE CASCADE
 );
 
 CREATE TABLE IF NOT EXISTS artist_genres (
-    artist_id INTEGER REFERENCES artists(id), 
-    genre_id INTEGER REFERENCES genres(id)
+    artist_id INTEGER REFERENCES artists(id) ON DELETE CASCADE, 
+    genre_id INTEGER REFERENCES genres(id) ON DELETE CASCADE
 );
 
 INSERT INTO genres (name, description)
