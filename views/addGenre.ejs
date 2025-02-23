@@ -17,24 +17,24 @@
         <h1>Subspace Music</h1>
       </header>
       <main>
-        <form action="/new" method="post">
+        <form action="/genres/new" method="post">
           <h2>New genre</h2>
           <div class="form-row">
-            <label for="genre-name">Name </label>
+            <label for="genreName">Name </label>
             <input
               type="text"
-              name="genre-name"
-              id="genre-name"
-              placeholder="90 characters max"
-              maxlength="90"
+              name="genreName"
+              id="genreName"
+              placeholder="50 characters max"
+              maxlength="50"
               required
             />
           </div>
           <div class="form-row">
-            <label for="genre-description">Description </label>
+            <label for="genreDescription">Description </label>
             <textarea
-              name="genre-description"
-              id="genre-description"
+              name="genreDescription"
+              id="genreDescription"
               rows="8"
               placeholder="255 characters max"
               maxlength="255"
