@@ -1,6 +1,11 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
-import { getAlbumArtist, getAlbumById, getAlbums } from "../db/queries.js";
+import {
+  getAlbumArtist,
+  getAlbumById,
+  getAlbumGenre,
+  getAlbums,
+} from "../db/queries.js";
 
 export async function albumsGet(req: Request, res: Response) {
   const albums = await getAlbums();
@@ -62,10 +67,12 @@ export async function albumPageGet(req: Request, res: Response) {
   const { albumId } = req.params;
 
   const album = await getAlbumById(Number(albumId));
+  const albumGenre = await getAlbumGenre(Number(albumId));
   const albumArtist = await getAlbumArtist(Number(albumId));
 
   res.render("album", {
     album: album,
+    albumGenre: albumGenre,
     albumArtist: albumArtist,
   });
 }

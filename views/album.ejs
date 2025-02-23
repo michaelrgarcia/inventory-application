@@ -28,6 +28,11 @@
           <a href="/artists/<%= albumArtist.id %>" class="artist-link"
             ><%= albumArtist.name %></a
           >
+          <% } %> <% if (locals.albumGenre) { %>
+          <p class="category-header" style="margin-bottom: 5px">Genre</p>
+          <a href="/genres/<%= albumGenre.id %>" class="genre-link"
+            ><%= albumGenre.name %></a
+          >
           <% } %>
           <p class="category-header">Description</p>
           <p class="album-description"><%= album.description %></p>

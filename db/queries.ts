@@ -30,6 +30,15 @@ export async function getArtistGenre(artistId: number) {
   return rows[0];
 }
 
+export async function getAlbumGenre(albumId: number) {
+  const { rows } = await pool.query(
+    "SELECT genres.name, genres.id FROM genres JOIN album_genres ON (album_genres.genre_id=genres.id) JOIN albums ON (albums.id=album_genres.album_id) WHERE albums.id = $1",
+    [albumId]
+  );
+
+  return rows[0];
+}
+
 export async function addArtist(
   name: string,
   description: string,
