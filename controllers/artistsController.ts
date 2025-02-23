@@ -1,7 +1,12 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
-import { getArtists } from "../db/queries.js";
+import {
+  getArtistById,
+  getArtists,
+  getDiscography,
+  getSameGenreArtists,
+} from "../db/queries.js";
 
 export async function artistsGet(req: Request, res: Response) {
   const artists = await getArtists();
@@ -51,3 +56,17 @@ export const addArtistPost = [
     res.status(200).redirect("/artists");
   },
 ];
+
+export async function artistPageGet(req: Request, res: Response) {
+  const { artistId } = req.params;
+
+  const artist = await getArtistById(Number(artistId));
+  const discography = await getDiscography(Number(artistId));
+  const sameGenreArtists = await getSameGenreArtists(Number(artistId));
+
+  res.render("artist", {
+    artist: artist,
+    discography: discography,
+    sameGenreArtists: sameGenreArtists,
+  });
+}
