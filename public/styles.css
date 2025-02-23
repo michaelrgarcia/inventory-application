@@ -22,10 +22,25 @@ header {
   border-bottom: 1px solid #ffffff25;
   margin-bottom: 30px;
   padding: 0 15px;
+
+  position: sticky;
+  top: 0;
+
+  z-index: 10;
+
+  height: 60px;
+}
+
+header:not(:has(.add-album)),
+header:not(:has(.add-genre)),
+header:not(:has(.add-artist)) {
+  justify-content: flex-start;
 }
 
 h1 {
   font-size: 1.5em;
+
+  margin: auto;
 }
 
 .add-album,
