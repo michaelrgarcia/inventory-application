@@ -10,27 +10,28 @@
     <div id="root">
       <%- include('partials/header', {category: "artist"}) %>
       <main>
+        <% if (locals.artists) { %> <% artists.forEach(function(artist) { %>
         <div class="artist">
           <div class="artist-info">
-            <!-- img src will come from a url in the db-->
             <div class="artist-pic-wrapper">
               <img
-                src="elliott-smith-umbrella.jpg"
-                alt="Elliott Smith Photo"
+                src="<%= artist.image %>"
+                alt="<%= artist.name %> Photo"
                 class="artist-pic"
               />
             </div>
-            <p class="artist-name">Elliott Smith</p>
+            <p class="artist-name"><%= artist.name %></p>
             <div class="artist-actions">
-              <a href="/">
+              <a href="/genres/<%= artist.id %>">
                 <button type="button">View</button>
               </a>
-              <a href="/">
-                <button type="button">Modify</button>
+              <a href="/genres/edit/<%= artist.id %>">
+                <button type="button">Edit</button>
               </a>
             </div>
           </div>
         </div>
+        <% }); %> <% } %>
       </main>
     </div>
   </body>
