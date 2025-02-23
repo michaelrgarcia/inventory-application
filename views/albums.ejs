@@ -10,32 +10,28 @@
     <div id="root">
       <%- include('partials/header', {category: "album"}) %>
       <main>
-        <!-- make into component-->
+        <% if (locals.albums) { %> <% albums.forEach(function(album) { %>
         <div class="album">
           <div class="album-info">
             <div class="album-cover-wrapper">
               <img
-                src="Elliott_smith_figure_8_cover.jpg"
+                src="<%= album.cover %>"
                 alt="Figure 8 Album Cover"
                 class="album-cover"
               />
             </div>
-            <p class="album-title">Figure 8</p>
-            <ul class="artists">
-              <a href="/">
-                <li>Elliott Smith</li>
-              </a>
-            </ul>
+            <p class="album-title"><%= album.album %></p>
             <div class="album-actions">
-              <a href="/">
+              <a href="/albums/<%= album.id %>">
                 <button type="button">View</button>
               </a>
-              <a href="/">
+              <a href="/albums/edit/<%= album.id %>">
                 <button type="button">Edit</button>
               </a>
             </div>
           </div>
         </div>
+        <% }); %> <% } %>
       </main>
     </div>
   </body>
