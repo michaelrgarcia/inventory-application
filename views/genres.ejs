@@ -10,19 +10,21 @@
     <div id="root">
       <%- include('partials/header', {category: "genre"}) %>
       <main>
+        <% if (locals.genres) { %> <% genres.forEach(function(genre) { %>
         <div class="genre">
           <div class="genre-info">
-            <p class="genre-name">Rock</p>
+            <p class="genre-name"><%= genre.name %></p>
             <div class="genre-actions">
-              <a href="/">
+              <a href="/genres/<%= genre.id %>">
                 <button type="button">View</button>
               </a>
-              <a href="/">
-                <button type="button">Modify</button>
+              <a href="/genres/edit/<%= genre.id %>">
+                <button type="button">Edit</button>
               </a>
             </div>
           </div>
         </div>
+        <% }); %> <% } %>
       </main>
     </div>
   </body>
