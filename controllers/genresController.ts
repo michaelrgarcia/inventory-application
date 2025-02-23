@@ -19,8 +19,8 @@ const validateGenre = [
     .optional({ checkFalsy: true })
     .trim()
     .escape()
-    .isLength({ max: 255 })
-    .withMessage(`Genre description cannot be longer than 255 characters.`),
+    .isLength({ max: 500 })
+    .withMessage(`Genre description cannot be longer than 500 characters.`),
 ];
 
 export const addGenrePost = [

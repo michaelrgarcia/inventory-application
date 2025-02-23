@@ -17,8 +17,8 @@ export const validateArtist = [
   body("artistDescription")
     .optional({ checkFalsy: true })
     .trim()
-    .isLength({ max: 255 })
-    .withMessage(`Artist description cannot be longer than 255 characters.`),
+    .isLength({ max: 500 })
+    .withMessage(`Artist description cannot be longer than 500 characters.`),
   body("artistImage")
     .optional({ checkFalsy: true })
     .trim()
@@ -37,9 +37,10 @@ export const addArtistPost = [
       });
     }
 
-    const { artistName, artistDescription, artistImage } = req.body;
+    const { artistName, artistGenre, artistDescription, artistImage } =
+      req.body;
 
-    console.log(artistName, artistDescription, artistImage);
+    console.log(artistName, artistGenre, artistDescription, artistImage);
 
     // insert artist query. use a placeholder image if no artistImage is entered
 

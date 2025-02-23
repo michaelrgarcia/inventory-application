@@ -18,8 +18,8 @@ export const validateAlbum = [
   body("albumDescription")
     .optional({ checkFalsy: true })
     .trim()
-    .isLength({ max: 255 })
-    .withMessage(`Album description cannot be longer than 255 characters.`),
+    .isLength({ max: 500 })
+    .withMessage(`Album description cannot be longer than 500 characters.`),
   body("albumCover")
     .optional({ checkFalsy: true })
     .trim()
