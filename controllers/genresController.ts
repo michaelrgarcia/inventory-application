@@ -1,7 +1,13 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
-import { getGenres } from "../db/queries.js";
+import {
+  getAlbumArtist,
+  getAlbumsByGenre,
+  getArtistsByGenre,
+  getGenreById,
+  getGenres,
+} from "../db/queries.js";
 
 export async function genresGet(req: Request, res: Response) {
   const genres = await getGenres();
@@ -47,3 +53,17 @@ export const addGenrePost = [
     res.status(200).redirect("/genres");
   },
 ];
+
+export async function genrePageGet(req: Request, res: Response) {
+  const { genreId } = req.params;
+
+  const genre = await getGenreById(Number(genreId));
+  const genreArtists = await getArtistsByGenre(Number(genreId));
+  const genreAlbums = await getAlbumsByGenre(Number(genreId));
+
+  res.render("genre", {
+    genre: genre,
+    genreArtists: genreArtists,
+    genreAlbums: genreAlbums,
+  });
+}

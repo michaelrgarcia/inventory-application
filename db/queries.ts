@@ -35,6 +35,15 @@ export async function getAlbums() {
   return rows;
 }
 
+export async function getAlbumsByGenre(genreId: number) {
+  const { rows } = await pool.query(
+    "SELECT albums.album, albums.cover, albums.id FROM albums JOIN album_genres ON (albums.id=album_genres.album_id) JOIN genres ON (genres.id=album_genres.genre_id) WHERE genres.id = $1",
+    [genreId]
+  );
+
+  return rows;
+}
+
 export async function getAlbumArtist(albumName: string) {
   const { rows } = await pool.query(
     "SELECT name FROM artists JOIN album_artists ON (artists.id=album_artists.artist_id) JOIN albums ON (albums.id=album_artists.album_id) WHERE album = $1;",

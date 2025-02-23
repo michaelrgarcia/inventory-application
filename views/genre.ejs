@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="/styles.css" />
     <title>Subspace Music</title>
   </head>
   <body>
@@ -18,7 +18,58 @@
       </header>
       <main>
         <% if (locals.genre) { %>
-        <h2><%= genre.name %></h2>
+        <div class="genre-wrapper">
+          <h2>Genre</h2>
+          <p><%= genre.name %></p>
+          <h3>Description</h3>
+          <p class="genre-description"><%= genre.description %></p>
+          <div class="artist-category">
+            <p class="category-header">Artists of this genre:</p>
+            <% if (locals.genreArtists) { %> <%
+            genreArtists.forEach(function(artist) { %>
+            <div class="artist">
+              <div class="artist-info">
+                <div class="artist-pic-wrapper">
+                  <img
+                    src="<%= artist.image %>"
+                    alt="<%= artist.name %> Photo"
+                    class="artist-pic"
+                  />
+                </div>
+                <p class="artist-name"><%= artist.name %></p>
+                <div class="artist-actions">
+                  <a href="/artists/<%= artist.id %>">
+                    <button type="button">View</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% }); %> <% } %>
+          </div>
+          <div class="album-category">
+            <p class="category-header">Albums of this genre:</p>
+            <% if (locals.genreAlbums) { %> <%
+            genreAlbums.forEach(function(album) { %>
+            <div class="album">
+              <div class="album-info">
+                <div class="album-cover-wrapper">
+                  <img
+                    src="<%= album.cover %>"
+                    alt="<%= album.album %> Album Cover"
+                    class="album-cover"
+                  />
+                </div>
+                <p class="album-title"><%= album.album %></p>
+                <div class="album-actions">
+                  <a href="/albums/<%= album.id %>">
+                    <button type="button">View</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% }); %> <% } %>
+          </div>
+        </div>
         <% } %>
       </main>
     </div>
