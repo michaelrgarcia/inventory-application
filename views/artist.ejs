@@ -23,6 +23,12 @@
           </div>
           <h2>Artist</h2>
           <p><%= artist.name %></p>
+          <% if (locals.artistGenre) { %>
+          <p class="category-header" style="margin-bottom: 5px">Genre</p>
+          <a href="/genres/<%= artistGenre.id %>" class="genre-link"
+            ><%= artistGenre.name %></a
+          >
+          <% } %>
           <h3>Description</h3>
           <p class="artist-description"><%= artist.description %></p>
           <div class="album-category">

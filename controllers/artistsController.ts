@@ -4,6 +4,7 @@ import { body, validationResult } from "express-validator";
 import {
   addArtist,
   getArtistById,
+  getArtistGenre,
   getArtists,
   getDiscography,
   getGenres,
@@ -72,11 +73,13 @@ export async function artistPageGet(req: Request, res: Response) {
   const { artistId } = req.params;
 
   const artist = await getArtistById(Number(artistId));
+  const artistGenre = await getArtistGenre(Number(artistId));
   const discography = await getDiscography(Number(artistId));
   const sameGenreArtists = await getSameGenreArtists(Number(artistId));
 
   res.render("artist", {
     artist: artist,
+    artistGenre: artistGenre,
     discography: discography,
     sameGenreArtists: sameGenreArtists,
   });
