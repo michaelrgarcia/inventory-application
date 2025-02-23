@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Subspace Music</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <h1>Subspace Music</h1>
+      </header>
+      <main>
+        <form action="albums/edit/<%= album.id %>" method="post">
+          <%- include("partials/errors.ejs") %>
+          <h2>Edit album</h2>
+          <div class="form-row">
+            <label for="albumTitle">Title </label>
+            <input
+              type="text"
+              name="albumTitle"
+              id="albumTitle"
+              placeholder="125 characters max"
+              maxlength="125"
+              value="<%= album.album %>"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="releaseDate">Release Date </label>
+            <input
+              type="tel"
+              name="releaseDate"
+              id="releaseDate"
+              min="0"
+              max="9999"
+              value="<%= album.yr %>"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="albumArtist">Artist </label>
+            <input
+              list="artists"
+              id="albumArtist"
+              name="albumArtist"
+              placeholder="Search artists"
+              value="<%= albumArtist.name %>"
+              required
+            />
+            <datalist id="artists">
+              <% if (locals.artists) { %> <% artists.forEach(function(artist) {
+              %>
+              <option value="<%= artist.name %>"></option>
+              <% }); %> <% } %>
+            </datalist>
+          </div>
+          <div class="form-row">
+            <label for="albumGenre">Genre </label>
+            <input
+              list="genres"
+              id="albumGenre"
+              name="albumGenre"
+              placeholder="Search genres"
+              value="<%= albumGenre.name %>"
+            />
+            <datalist id="genres">
+              <% if (locals.genres) { %> <% genres.forEach(function(genre) { %>
+              <option value="<%= genre.name %>"></option>
+              <% }); %> <% } %>
+            </datalist>
+          </div>
+          <div class="form-row">
+            <label for="albumDescription">Description </label>
+            <textarea
+              name="albumDescription"
+              id="albumDescription"
+              rows="8"
+              placeholder="500 characters max"
+              maxlength="500"
+            >
+<%= album.description %></textarea
+            >
+          </div>
+          <div class="form-row">
+            <label for="albumCover">Image URL </label>
+            <input
+              type="url"
+              name="albumCover"
+              id="albumCover"
+              placeholder="Enter a valid URL"
+              value="<%= album.cover %>"
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

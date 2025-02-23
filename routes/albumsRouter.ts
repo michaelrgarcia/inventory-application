@@ -4,6 +4,7 @@ import {
   addAlbumPost,
   albumPageGet,
   albumsGet,
+  editAlbumGet,
 } from "../controllers/albumsController.js";
 
 const albumsRouter = Router();
@@ -15,5 +16,7 @@ albumsRouter.get("/new", addAlbumGet);
 albumsRouter.post("/new", addAlbumPost as any);
 
 albumsRouter.get("/:albumId", albumPageGet);
+
+albumsRouter.get("/edit/:albumId", editAlbumGet);
 
 export default albumsRouter;

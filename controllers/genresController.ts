@@ -66,3 +66,11 @@ export async function genrePageGet(req: Request, res: Response) {
     genreAlbums: genreAlbums,
   });
 }
+
+export async function editGenreGet(req: Request, res: Response) {
+  const { genreId } = req.params;
+
+  const genre = await getGenreById(Number(genreId));
+
+  res.render("editGenre", { genre: genre });
+}

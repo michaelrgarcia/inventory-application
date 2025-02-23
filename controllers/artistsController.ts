@@ -84,3 +84,17 @@ export async function artistPageGet(req: Request, res: Response) {
     sameGenreArtists: sameGenreArtists,
   });
 }
+
+export async function editArtistGet(req: Request, res: Response) {
+  const { artistId } = req.params;
+
+  const artist = await getArtistById(Number(artistId));
+  const artistGenre = await getArtistGenre(Number(artistId));
+  const genres = await getGenres();
+
+  res.render("editArtist", {
+    artist: artist,
+    artistGenre: artistGenre,
+    genres: genres,
+  });
+}

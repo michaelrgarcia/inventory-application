@@ -101,3 +101,21 @@ export async function albumPageGet(req: Request, res: Response) {
     albumArtist: albumArtist,
   });
 }
+
+export async function editAlbumGet(req: Request, res: Response) {
+  const { albumId } = req.params;
+
+  const album = await getAlbumById(Number(albumId));
+  const albumArtist = await getAlbumArtist(Number(albumId));
+  const albumGenre = await getAlbumGenre(Number(albumId));
+  const artists = await getArtists();
+  const genres = await getGenres();
+
+  res.render("editAlbum", {
+    album: album,
+    albumArtist: albumArtist,
+    albumGenre: albumGenre,
+    artists: artists,
+    genres: genres,
+  });
+}

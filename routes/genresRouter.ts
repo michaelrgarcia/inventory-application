@@ -2,6 +2,7 @@ import { Router } from "express";
 import {
   addGenreGet,
   addGenrePost,
+  editGenreGet,
   genrePageGet,
   genresGet,
 } from "../controllers/genresController.js";
@@ -15,5 +16,7 @@ genresRouter.get("/new", addGenreGet);
 genresRouter.post("/new", addGenrePost as any);
 
 genresRouter.get("/:genreId", genrePageGet);
+
+genresRouter.get("/edit/:genreId", editGenreGet);
 
 export default genresRouter;
