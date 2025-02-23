@@ -3,6 +3,7 @@ import { body, validationResult } from "express-validator";
 
 import {
   addGenre,
+  deleteGenre,
   getAlbumArtist,
   getAlbumsByGenre,
   getArtistsByGenre,
@@ -67,10 +68,42 @@ export async function genrePageGet(req: Request, res: Response) {
   });
 }
 
+export async function deleteGenreGet(req: Request, res: Response) {
+  const { genreId } = req.params;
+
+  res.render("delete", { category: "genre", id: genreId });
+}
+
+export async function deleteGenrePost(req: Request, res: Response) {
+  const { genreId } = req.params;
+
+  await deleteGenre(Number(genreId));
+
+  res.redirect("/genres");
+}
+
 export async function editGenreGet(req: Request, res: Response) {
   const { genreId } = req.params;
 
   const genre = await getGenreById(Number(genreId));
-
   res.render("editGenre", { genre: genre });
 }
+
+export const editGenrePost = [
+  validateGenre,
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render("addGenre", {
+        errors: errors.array(),
+      });
+    }
+
+    const { genreName, genreDescription } = req.body;
+
+    await addGenre(genreName, genreDescription);
+
+    res.status(200).redirect("/genres");
+  },
+];

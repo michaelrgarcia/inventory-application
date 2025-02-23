@@ -2,7 +2,10 @@ import { Router } from "express";
 import {
   addGenreGet,
   addGenrePost,
+  deleteGenreGet,
+  deleteGenrePost,
   editGenreGet,
+  editGenrePost,
   genrePageGet,
   genresGet,
 } from "../controllers/genresController.js";
@@ -17,6 +20,10 @@ genresRouter.post("/new", addGenrePost as any);
 
 genresRouter.get("/:genreId", genrePageGet);
 
+genresRouter.get("/delete/:genreId", deleteGenreGet);
+genresRouter.post("/delete/:genreId", deleteGenrePost);
+
 genresRouter.get("/edit/:genreId", editGenreGet);
+genresRouter.post("/edit/:genreId", editGenrePost as any);
 
 export default genresRouter;
