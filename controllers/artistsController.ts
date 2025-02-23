@@ -1,8 +1,12 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 
-export function artistsGet(req: Request, res: Response) {
-  res.render("artists");
+import { getArtists } from "../db/queries.js";
+
+export async function artistsGet(req: Request, res: Response) {
+  const artists = await getArtists();
+
+  res.render("artists", { artists: artists });
 }
 
 export function addArtistGet(req: Request, res: Response) {
