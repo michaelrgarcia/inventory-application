@@ -10,12 +10,14 @@ CREATE TABLE albums (
     album VARCHAR ( 125 ), 
     yr INTEGER, 
     description VARCHAR ( 255 )
+    cover TEXT
 );
 
 CREATE TABLE artists (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
     name VARCHAR ( 90 ),  
     description VARCHAR ( 255 )
+    image TEXT
 );
 
 CREATE TABLE genres (
