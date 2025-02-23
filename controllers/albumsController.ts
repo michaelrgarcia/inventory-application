@@ -14,6 +14,7 @@ export const validateAlbum = [
     .trim()
     .isLength({ max: 90 })
     .withMessage(`Album title cannot be longer than 90 characters.`),
+  body("releaseDate").toInt(),
   body("albumDescription")
     .optional({ checkFalsy: true })
     .trim()
@@ -37,9 +38,16 @@ export const addAlbumPost = [
       });
     }
 
-    const { albumTitle, albumDescription, albumCover } = req.body;
+    const {
+      albumTitle,
+      releaseDate,
+      albumArtist,
+      albumGenre,
+      albumDescription,
+      albumCover,
+    } = req.body;
 
-    console.log(albumTitle, albumDescription, albumCover);
+    console.log(albumArtist);
 
     // insert album query. use a placeholder image if no albumCover is entered
 
