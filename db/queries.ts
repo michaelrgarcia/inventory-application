@@ -70,10 +70,18 @@ export async function getDiscography(artistId: number) {
   return rows;
 }
 
-export async function getAlbumArtist(albumName: string) {
+export async function getAlbumById(albumId: number) {
+  const { rows } = await pool.query("SELECT * FROM albums WHERE id = $1", [
+    albumId,
+  ]);
+
+  return rows[0];
+}
+
+export async function getAlbumArtist(albumId: number) {
   const { rows } = await pool.query(
-    "SELECT name FROM artists JOIN album_artists ON (artists.id=album_artists.artist_id) JOIN albums ON (albums.id=album_artists.album_id) WHERE album = $1;",
-    [albumName]
+    "SELECT artists.name, artists.id FROM artists JOIN album_artists ON (artists.id=album_artists.artist_id) JOIN albums ON (albums.id=album_artists.album_id) WHERE albums.id = $1;",
+    [albumId]
   );
 
   return rows[0];
