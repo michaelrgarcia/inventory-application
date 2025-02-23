@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
+import { getAlbums } from "../db/queries.js";
 
-export function albumsGet(req: Request, res: Response) {
-  res.render("albums");
+export async function albumsGet(req: Request, res: Response) {
+  const albums = await getAlbums();
+
+  res.render("albums", { albums: albums });
 }
 
 export function addAlbumGet(req: Request, res: Response) {
