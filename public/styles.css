@@ -104,6 +104,8 @@ main {
   display: flex;
   flex-direction: column;
   place-items: center;
+
+  padding-bottom: 50px;
 }
 
 .categories {
