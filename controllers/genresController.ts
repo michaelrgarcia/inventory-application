@@ -9,16 +9,17 @@ export function addGenreGet(req: Request, res: Response) {
   res.render("addGenre");
 }
 
-export const validateGenre = [
+const validateGenre = [
   body("genreName")
     .trim()
     .escape()
-    .isLength({ min: 1, max: 50 })
+    .isLength({ max: 50 })
     .withMessage(`Genre name cannot be longer than 50 characters.`),
   body("genreDescription")
+    .optional({ checkFalsy: true })
     .trim()
     .escape()
-    .isLength({ min: 1, max: 255 })
+    .isLength({ max: 255 })
     .withMessage(`Genre description cannot be longer than 255 characters.`),
 ];
 
