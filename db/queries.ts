@@ -88,6 +88,30 @@ export async function getArtistById(artistId: number) {
   return rows[0];
 }
 
+export async function addAlbum(
+  album: string,
+  yr: number,
+  description: string,
+  coverUrl: string,
+  artist: string,
+  genre: string
+) {
+  await pool.query(
+    "INSERT INTO albums (album, yr, description, cover) VALUES ($1, $2, $3, $4)",
+    [album, yr, description, coverUrl]
+  );
+
+  await pool.query(
+    "INSERT INTO album_artists (album_id, artist_id) SELECT albums.id, artists.id FROM albums, artists WHERE albums.album = $1 AND artists.name = $2",
+    [album, artist]
+  );
+
+  await pool.query(
+    "INSERT INTO album_genres (album_id, genre_id) SELECT albums.id, genres.id FROM albums, genres WHERE albums.album = $1 AND genres.name = $2",
+    [album, genre]
+  );
+}
+
 export async function getAlbums() {
   const { rows } = await pool.query("SELECT * FROM albums");
 

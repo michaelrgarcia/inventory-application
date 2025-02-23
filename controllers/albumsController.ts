@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import {
+  addAlbum,
   getAlbumArtist,
   getAlbumById,
   getAlbumGenre,
@@ -45,7 +46,7 @@ export const validateAlbum = [
 
 export const addAlbumPost = [
   validateAlbum,
-  (req: Request, res: Response) => {
+  async (req: Request, res: Response) => {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
@@ -63,9 +64,25 @@ export const addAlbumPost = [
       albumCover,
     } = req.body;
 
-    console.log(albumArtist);
-
-    // insert album query. use a placeholder image if no albumCover is entered
+    if (albumCover !== "") {
+      await addAlbum(
+        albumTitle,
+        releaseDate,
+        albumDescription,
+        albumCover,
+        albumArtist,
+        albumGenre
+      );
+    } else {
+      await addAlbum(
+        albumTitle,
+        releaseDate,
+        albumDescription,
+        "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+        albumArtist,
+        albumGenre
+      );
+    }
 
     res.status(200).redirect("/albums");
   },
