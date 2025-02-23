@@ -22,7 +22,6 @@ export const validateArtist = [
   body("artistImage")
     .optional({ checkFalsy: true })
     .trim()
-    .unescape()
     .isURL()
     .withMessage(`Entered URL is invalid.`),
 ];
