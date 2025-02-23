@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Subspace Music</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <a href="/">
+          <button type="button" class="go-back">
+            <img src="/arrow-left.svg" alt="Go back" />
+          </button>
+        </a>
+        <h1>Subspace Music</h1>
+      </header>
+      <main>
+        <form action="/new" method="post">
+          <h2>New genre</h2>
+          <div class="form-row">
+            <label for="genre-name">Name </label>
+            <input
+              type="text"
+              name="genre-name"
+              id="genre-name"
+              placeholder="90 characters max"
+              maxlength="90"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="genre-description">Description </label>
+            <textarea
+              name="genre-description"
+              id="genre-description"
+              rows="8"
+              placeholder="255 characters max"
+              maxlength="255"
+            ></textarea>
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>

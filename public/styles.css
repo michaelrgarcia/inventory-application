@@ -214,7 +214,8 @@ main {
 
 .album-actions > a > button,
 .artist-actions > a > button,
-.genre-actions > a > button {
+.genre-actions > a > button,
+button[type="submit"] {
   width: 90px;
 
   padding: 5px 0px;
@@ -228,7 +229,8 @@ main {
 
 .album-actions > a > button:hover,
 .artist-actions > a > button:hover,
-.genre-actions > a > button:hover {
+.genre-actions > a > button:hover,
+button[type="submit"]:hover {
   background-color: rgba(59, 190, 109, 0.8);
 
   cursor: pointer;
@@ -236,6 +238,49 @@ main {
 
 .album-actions > a > button:active,
 .artist-actions > a > button:active,
-.genre-actions > a > button:active {
+.genre-actions > a > button:active,
+button[type="submit"]:active {
   background-color: rgba(59, 190, 109, 0.6);
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+
+  gap: 20px;
+}
+
+h2 {
+  align-self: flex-start;
+
+  margin-bottom: -5px;
+  margin-top: 0;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+
+  gap: 5px;
+}
+
+button[type="submit"] {
+  margin-top: 5px;
+}
+
+input,
+textarea {
+  background-color: #000;
+
+  caret-color: #fff;
+
+  color: #fff;
+
+  border: none;
+  border-radius: 8px;
+  padding: 8px 10px;
+}
+
+textarea {
+  resize: none;
 }
