@@ -177,6 +177,7 @@ main {
 
 .album-title {
   margin-top: 10px;
+  margin-bottom: 0px;
 
   font-size: 1.1em;
 }
@@ -185,26 +186,6 @@ main {
   margin-top: 0px;
 
   font-size: 1.2em;
-}
-
-.artists {
-  list-style-type: none;
-
-  padding-left: 0;
-  margin-top: -17px;
-
-  width: min-content;
-  min-width: 120px;
-}
-
-.artists > a {
-  color: #24c360;
-
-  text-decoration: none;
-}
-
-.artists > a:hover {
-  color: #6bc78e;
 }
 
 .album-actions,
@@ -217,6 +198,12 @@ main {
   display: flex;
 
   gap: 20px;
+}
+
+.album-actions,
+.artist-actions,
+.genre-actions {
+  margin-top: 20px;
 }
 
 .album-actions > a > button,
