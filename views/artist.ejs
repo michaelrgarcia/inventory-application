@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Subspace Music</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <h1>Subspace Music</h1>
+      </header>
+      <main>
+        <% if (locals.artist) { %>
+        <div class="artist-wrapper">
+          <div class="artist-pic-wrapper" style="margin-bottom: 20px">
+            <img
+              src="<%= artist.image %>"
+              alt="<%= artist.name %> Photo"
+              class="artist-pic"
+            />
+          </div>
+          <h2>Artist</h2>
+          <p><%= artist.name %></p>
+          <h3>Description</h3>
+          <p class="artist-description"><%= artist.description %></p>
+          <div class="album-category">
+            <p class="category-header">Albums from this artist</p>
+            <% if (locals.discography) { %> <%
+            discography.forEach(function(album) { %>
+            <div class="album">
+              <div class="album-info">
+                <div class="album-cover-wrapper">
+                  <img
+                    src="<%= album.cover %>"
+                    alt="<%= album.album %> Album Cover"
+                    class="album-cover"
+                  />
+                </div>
+                <p class="album-title"><%= album.album %></p>
+                <div class="album-actions">
+                  <a href="/albums/<%= album.id %>">
+                    <button type="button">View</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% }); %> <% } %>
+          </div>
+          <div class="artist-category">
+            <p class="category-header">Other artists of this genre</p>
+            <% if (locals.sameGenreArtists) { %> <%
+            sameGenreArtists.forEach(function(artist) { %>
+            <div class="artist">
+              <div class="artist-info">
+                <div class="artist-pic-wrapper">
+                  <img
+                    src="<%= artist.image %>"
+                    alt="<%= artist.name %> Photo"
+                    class="artist-pic"
+                  />
+                </div>
+                <p class="artist-name"><%= artist.name %></p>
+                <div class="artist-actions">
+                  <a href="/artists/<%= artist.id %>">
+                    <button type="button">View</button>
+                  </a>
+                </div>
+              </div>
+            </div>
+            <% }); %> <% } %>
+          </div>
+        </div>
+        <% } %>
+      </main>
+    </div>
+  </body>
+</html>
