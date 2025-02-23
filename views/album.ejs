@@ -22,7 +22,7 @@
             />
           </div>
           <h2>Album</h2>
-          <p class="album-name"><%= album.album %></p>
+          <p class="album-name"><%= album.album %> (<%= album.yr %>)</p>
           <h3 style="margin-bottom: 8px">Artist</h3>
           <% if (locals.albumArtist) { %>
           <a href="/artists/<%= albumArtist.id %>" class="artist-link"
