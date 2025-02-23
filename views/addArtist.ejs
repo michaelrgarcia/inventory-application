@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Subspace Music</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <a href="/artists">
+          <button type="button" class="go-back">
+            <img src="/arrow-left.svg" alt="Go back" />
+          </button>
+        </a>
+        <h1>Subspace Music</h1>
+      </header>
+      <main>
+        <form action="/artists/new" method="post">
+          <%- include("partials/errors.ejs") %>
+          <h2>New artist</h2>
+          <div class="form-row">
+            <label for="artistName">Name </label>
+            <input
+              type="text"
+              name="artistName"
+              id="artistName"
+              placeholder="50 characters max"
+              maxlength="50"
+              required
+            />
+          </div>
+          <div class="form-row">
+            <label for="artistDescription">Description </label>
+            <textarea
+              name="artistDescription"
+              id="artistDescription"
+              rows="8"
+              placeholder="255 characters max"
+              maxlength="255"
+            ></textarea>
+          </div>
+          <div class="form-row">
+            <label for="artistImage">Image URL </label>
+            <input
+              type="url"
+              name="artistImage"
+              id="artistImage"
+              placeholder="Enter a valid URL"
+            />
+          </div>
+          <button type="submit">Submit</button>
+        </form>
+      </main>
+    </div>
+  </body>
+</html>
