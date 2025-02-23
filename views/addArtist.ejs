@@ -35,9 +35,9 @@
               placeholder="Search genres"
             />
             <datalist id="genres">
-              <!-- populate with genres from db -->
-              <option value="Rock"></option>
-              <option value="Pop"></option>
+              <% if (locals.genres) { %> <% genres.forEach(function(genre) { %>
+              <option value="<%= genre.name %>"></option>
+              <% }); %> <% } %>
             </datalist>
           </div>
           <div class="form-row">
