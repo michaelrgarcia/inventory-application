@@ -20,7 +20,7 @@ CREATE TABLE artists (
 
 CREATE TABLE genres (
     id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY, 
-    name VARCHAR ( 90 ),  
+    name VARCHAR ( 50 ),  
     description VARCHAR ( 255 )
 );
 
