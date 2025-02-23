@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/styles.css" />
+    <title>Subspace Music</title>
+  </head>
+  <body>
+    <div id="root">
+      <header>
+        <h1>Subspace Music</h1>
+      </header>
+      <main>
+        <% if (locals.album) { %>
+        <div class="album-wrapper">
+          <div class="album-cover-wrapper" style="margin-bottom: 20px">
+            <img
+              src="<%= album.cover %>"
+              alt="<%= album.album %> Photo"
+              class="album-cover"
+            />
+          </div>
+          <h2>Album</h2>
+          <p class="album-name"><%= album.album %></p>
+          <h3 style="margin-bottom: 8px">Artist</h3>
+          <% if (locals.albumArtist) { %>
+          <a href="/artists/<%= albumArtist.id %>" class="artist-link"
+            ><%= albumArtist.name %></a
+          >
+          <% } %>
+          <p class="category-header">Description</p>
+          <p class="album-description"><%= album.description %></p>
+        </div>
+        <% } %>
+      </main>
+    </div>
+  </body>
+</html>
