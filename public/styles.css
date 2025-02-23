@@ -19,7 +19,8 @@ header {
   justify-content: space-between;
   align-items: center;
 
-  background-color: #111112;
+  background-color: #111112f0;
+  backdrop-filter: blur(10px);
 
   border-bottom: 1px solid #ffffff25;
   margin-bottom: 30px;
