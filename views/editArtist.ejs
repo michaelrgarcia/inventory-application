@@ -29,7 +29,7 @@
           </div>
           <div class="form-row">
             <label for="artistGenre">Genre </label>
-            <% if (locals.artistGenre) { %>
+            <% if (locals.artistGenre !== undefined) { %>
             <input
               list="genres"
               id="artistGenre"
