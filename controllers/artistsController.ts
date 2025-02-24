@@ -3,12 +3,14 @@ import { body, validationResult } from "express-validator";
 
 import {
   addArtist,
+  deleteArtist,
   getArtistById,
   getArtistGenre,
   getArtists,
   getDiscography,
   getGenres,
   getSameGenreArtists,
+  updateArtist,
 } from "../db/queries.js";
 
 export async function artistsGet(req: Request, res: Response) {
@@ -85,6 +87,20 @@ export async function artistPageGet(req: Request, res: Response) {
   });
 }
 
+export async function deleteArtistGet(req: Request, res: Response) {
+  const { artistId } = req.params;
+
+  res.render("delete", { category: "artist", id: artistId });
+}
+
+export async function deleteArtistPost(req: Request, res: Response) {
+  const { artistId } = req.params;
+
+  await deleteArtist(Number(artistId));
+
+  res.redirect("/artists");
+}
+
 export async function editArtistGet(req: Request, res: Response) {
   const { artistId } = req.params;
 
@@ -98,3 +114,40 @@ export async function editArtistGet(req: Request, res: Response) {
     genres: genres,
   });
 }
+
+export const editArtistPost = [
+  validateArtist,
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render("editArtist", {
+        errors: errors.array(),
+      });
+    }
+
+    const { artistName, artistGenre, artistDescription, artistImage } =
+      req.body;
+    const { artistId } = req.params;
+
+    if (artistImage !== "") {
+      await updateArtist(
+        artistName,
+        artistDescription,
+        artistImage,
+        artistGenre,
+        Number(artistId)
+      );
+    } else {
+      await updateArtist(
+        artistName,
+        artistDescription,
+        "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+        artistGenre,
+        Number(artistId)
+      );
+    }
+
+    res.status(200).redirect("/artists");
+  },
+];

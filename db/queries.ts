@@ -107,6 +107,24 @@ export async function deleteArtist(artistId: number) {
   await pool.query("DELETE FROM artists WHERE artists.id = $1", [artistId]);
 }
 
+export async function updateArtist(
+  name: string,
+  description: string,
+  imgUrl: string,
+  genre: string,
+  artistId: number
+) {
+  await pool.query(
+    "UPDATE artists SET name = $1, description = $2, image = $3 WHERE id = $4",
+    [name, description, imgUrl, artistId]
+  );
+
+  await pool.query(
+    "UPDATE artist_genres SET genre_id = (SELECT id FROM genres WHERE name = $1) WHERE artist_id = $2",
+    [genre, artistId]
+  );
+}
+
 export async function addAlbum(
   album: string,
   yr: number,
