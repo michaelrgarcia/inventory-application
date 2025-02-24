@@ -7,8 +7,8 @@
     <title>Subspace Music</title>
   </head>
   <body>
+    <%- include('partials/header', {category: "album"}) %>
     <div id="root">
-      <%- include('partials/header', {category: "album"}) %>
       <main>
         <% if (locals.albums) { %> <% albums.forEach(function(album) { %>
         <div class="album">
