@@ -4,7 +4,10 @@ import {
   addAlbumPost,
   albumPageGet,
   albumsGet,
+  deleteAlbumGet,
+  deleteAlbumPost,
   editAlbumGet,
+  editAlbumPost,
 } from "../controllers/albumsController.js";
 
 const albumsRouter = Router();
@@ -18,5 +21,9 @@ albumsRouter.post("/new", addAlbumPost as any);
 albumsRouter.get("/:albumId", albumPageGet);
 
 albumsRouter.get("/edit/:albumId", editAlbumGet);
+albumsRouter.post("/edit/:albumId", editAlbumPost as any);
+
+albumsRouter.get("/delete/:albumId", deleteAlbumGet);
+albumsRouter.post("/delete/:albumId", deleteAlbumPost);
 
 export default albumsRouter;

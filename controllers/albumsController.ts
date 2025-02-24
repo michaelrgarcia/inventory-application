@@ -2,12 +2,14 @@ import { Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import {
   addAlbum,
+  deleteAlbum,
   getAlbumArtist,
   getAlbumById,
   getAlbumGenre,
   getAlbums,
   getArtists,
   getGenres,
+  updateAlbum,
 } from "../db/queries.js";
 
 export async function albumsGet(req: Request, res: Response) {
@@ -102,6 +104,20 @@ export async function albumPageGet(req: Request, res: Response) {
   });
 }
 
+export async function deleteAlbumGet(req: Request, res: Response) {
+  const { albumId } = req.params;
+
+  res.render("delete", { category: "album", id: albumId });
+}
+
+export async function deleteAlbumPost(req: Request, res: Response) {
+  const { albumId } = req.params;
+
+  await deleteAlbum(Number(albumId));
+
+  res.redirect("/albums");
+}
+
 export async function editAlbumGet(req: Request, res: Response) {
   const { albumId } = req.params;
 
@@ -119,3 +135,50 @@ export async function editAlbumGet(req: Request, res: Response) {
     genres: genres,
   });
 }
+
+export const editAlbumPost = [
+  validateAlbum,
+  async (req: Request, res: Response) => {
+    const errors = validationResult(req);
+
+    if (!errors.isEmpty()) {
+      return res.status(400).render("editAlbum", {
+        errors: errors.array(),
+      });
+    }
+
+    const {
+      albumTitle,
+      releaseDate,
+      albumArtist,
+      albumGenre,
+      albumDescription,
+      albumCover,
+    } = req.body;
+    const { albumId } = req.params;
+
+    if (albumCover !== "") {
+      await updateAlbum(
+        albumTitle,
+        Number(releaseDate),
+        albumDescription,
+        albumCover,
+        albumArtist,
+        albumGenre,
+        Number(albumId)
+      );
+    } else {
+      await updateAlbum(
+        albumTitle,
+        Number(releaseDate),
+        albumDescription,
+        "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=",
+        albumArtist,
+        albumGenre,
+        Number(albumId)
+      );
+    }
+
+    res.status(200).redirect("/albums");
+  },
+];

@@ -41,14 +41,22 @@
           </div>
           <div class="form-row">
             <label for="albumArtist">Artist </label>
+            <% if (locals.albumArtist !== undefined) { %>
             <input
               list="artists"
               id="albumArtist"
               name="albumArtist"
               placeholder="Search artists"
               value="<%= albumArtist.name %>"
-              required
             />
+            <% } else { %>
+            <input
+              list="artists"
+              id="albumArtist"
+              name="albumArtist"
+              placeholder="Search artists"
+            />
+            <% } %>
             <datalist id="artists">
               <% if (locals.artists) { %> <% artists.forEach(function(artist) {
               %>
@@ -58,6 +66,7 @@
           </div>
           <div class="form-row">
             <label for="albumGenre">Genre </label>
+            <% if (locals.albumGenre !== undefined) { %>
             <input
               list="genres"
               id="albumGenre"
@@ -65,6 +74,14 @@
               placeholder="Search genres"
               value="<%= albumGenre.name %>"
             />
+            <% } else { %>
+            <input
+              list="genres"
+              id="albumGenre"
+              name="albumGenre"
+              placeholder="Search genres"
+            />
+            <% } %>
             <datalist id="genres">
               <% if (locals.genres) { %> <% genres.forEach(function(genre) { %>
               <option value="<%= genre.name %>"></option>
