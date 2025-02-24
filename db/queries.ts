@@ -103,10 +103,6 @@ export async function getArtistById(artistId: number) {
   return rows[0];
 }
 
-export async function deleteArtist(artistId: number) {
-  await pool.query("DELETE FROM artists WHERE artists.id = $1", [artistId]);
-}
-
 export async function updateArtist(
   name: string,
   description: string,
@@ -123,6 +119,10 @@ export async function updateArtist(
     "UPDATE artist_genres SET genre_id = (SELECT id FROM genres WHERE name = $1) WHERE artist_id = $2",
     [genre, artistId]
   );
+}
+
+export async function deleteArtist(artistId: number) {
+  await pool.query("DELETE FROM artists WHERE artists.id = $1", [artistId]);
 }
 
 export async function addAlbum(
@@ -188,6 +188,31 @@ export async function getAlbumArtist(albumId: number) {
   );
 
   return rows[0];
+}
+
+export async function updateAlbum(
+  album: string,
+  yr: number,
+  description: string,
+  coverUrl: string,
+  artist: string,
+  genre: string,
+  albumId: number
+) {
+  await pool.query(
+    "UPDATE albums SET album = $1, yr = $2, description = $3, cover = $4 WHERE id = $5",
+    [album, yr, description, coverUrl, albumId]
+  );
+
+  await pool.query(
+    "UPDATE album_artists SET artist_id = (SELECT id FROM artists WHERE name = $1) WHERE album_id = $2",
+    [artist, albumId]
+  );
+
+  await pool.query(
+    "UPDATE album_genres SET genre_id = (SELECT id FROM genres WHERE name = $1) WHERE album_id = $2",
+    [genre, albumId]
+  );
 }
 
 export async function deleteAlbum(albumId: number) {
