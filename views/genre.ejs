@@ -23,8 +23,8 @@
           <p><%= genre.name %></p>
           <h3>Description</h3>
           <p class="genre-description"><%= genre.description %></p>
+          <p class="category-header">Artists of this genre</p>
           <div class="artist-category">
-            <p class="category-header">Artists of this genre</p>
             <% if (locals.genreArtists) { %> <%
             genreArtists.forEach(function(artist) { %>
             <div class="artist">
@@ -46,8 +46,8 @@
             </div>
             <% }); %> <% } %>
           </div>
+          <p class="category-header">Albums of this genre</p>
           <div class="album-category">
-            <p class="category-header">Albums of this genre</p>
             <% if (locals.genreAlbums) { %> <%
             genreAlbums.forEach(function(album) { %>
             <div class="album">
